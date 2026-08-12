@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".p5Activity">
+
+
+    <!-- 상단 배너 -->
+    <TextView
+        android:id="@+id/practice5_banner"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+
+        android:background="#44C0B5"
+        android:gravity="center"
+
+        android:text="실습 5번"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+
+    <!-- Bluetooth 연결 버튼 -->
+    <Button
+        android:id="@+id/btBTN"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+
+        android:background="@drawable/selector_bt_btn"
+        android:onClick="clickFunc" />
+
+
+    <!-- 속도 확인 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/p5_speedCheck"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+
+            android:text="속도 확인"
+            android:textSize="18sp"
+            android:onClick="clickFunc" />
+
+        <TextView
+            android:id="@+id/p5_speedText"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+
+            android:gravity="center"
+            android:background="#DDDDDD"
+
+            android:text="Speed : 50"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+    <!-- DC 모터 정방향 -->
+    <Button
+        android:id="@+id/p5_up"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+
+        android:text="▲"
+        android:textSize="24sp"
+        android:onClick="clickFunc" />
+
+
+    <!-- 서보모터 좌우 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/p5_left"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+
+            android:layout_marginLeft="40dp"
+
+            android:text="◀"
+            android:textSize="24sp"
+            android:onClick="clickFunc" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/p5_right"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+
+            android:layout_marginRight="40dp"
+
+            android:text="▶"
+            android:textSize="24sp"
+            android:onClick="clickFunc" />
+
+    </LinearLayout>
+
+
+    <!-- DC 모터 역방향 -->
+    <Button
+        android:id="@+id/p5_down"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+
+        android:text="▼"
+        android:textSize="24sp"
+        android:onClick="clickFunc" />
+
+
+    <!-- 가속 / 정지 / 감속 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
+
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/p5_accel"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+
+            android:text="가속"
+            android:textSize="18sp"
+            android:onClick="clickFunc" />
+
+
+        <Button
+            android:id="@+id/p5_stop"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+
+            android:text="정지"
+            android:textSize="18sp"
+            android:onClick="clickFunc" />
+
+
+        <Button
+            android:id="@+id/p5_decel"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+
+            android:text="감속"
+            android:textSize="18sp"
+            android:onClick="clickFunc" />
+
+    </LinearLayout>
+
+</LinearLayout>
