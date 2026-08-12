@@ -41,6 +41,7 @@ values from 0 to 15.
 - Prepare display values using a number table
 - Update four display digits
 - Continuously change the displayed values
+- Use a reimplemented TM1637 driver for display communication
 
 ## Build
 
@@ -69,5 +70,10 @@ at 500 ms intervals.
 
 ## Source
 
-Reconstructed from the 4-digit FND example in the
-Embedded Systems laboratory materials.
+The main application was reconstructed from the
+4-digit FND example in the Embedded Systems laboratory
+materials.
+
+The original TM1637 driver source files were unavailable,
+so `TM1637.c` and `TM1637.h` were reimplemented to provide
+the required TM1637 communication functions.
