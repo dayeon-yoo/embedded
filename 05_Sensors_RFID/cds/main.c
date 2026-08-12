@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include <wiringPi.h>
+#include <wiringPiSPI.h>
+#include <errno.h>
+#include <string.h>
+
+#define CHAN_CONFIG_SINGLE 8
+#define SPI_SPEED 1000000
+#define SPI_CE_CHANNEL 1
+#define SPI_ADC_LIGHT_CHANNEL 0
+#define CS_MCP3208 11
+
+int spiSetup(void);
+int readAnalogData(int adcChannel);
+
+int main(void)
+{
+    // wiringPi 초기화
+    if (wiringPiSetup() == -1)
+    {
+        printf("Setup Fail ~!!\n");
+        return -1;
+    }
+
+    // SPI 통신 초기화
+    spiSetup();
+
+    // ADC IC MCP3208 초기화
+    pinMode(CS_MCP3208, OUTPUT);
+
+    int adcValue = 0;
+
+    // 센서 값 읽어서 출력
+    while (1)
+    {
+        // 센서 값 읽기
+        adcValue = readAnalogData(SPI_ADC_LIGHT_CHANNEL);
+
+        printf("Light Value = %dLux\n", adcValue);
+
+        delay(500);
+    }
+
+    return 0;
+}
+
+int spiSetup(void)
+{
+    if (wiringPiSPISetup(SPI_CE_CHANNEL, SPI_SPEED) == -1)
+    {
+        fprintf(stderr,
+                "wiringPiSPISetup Failed ! ERROR : %s\n",
+                strerror(errno));
+
+        return 1;
+    }
+
+    return 0;
+}
+
+// 채널에서 측정된 ADC 센서 읽어오기
+int readAnalogData(int adcChannel)
+{
+    int adcValue = 0;
+    unsigned char buffer[3] = {0};
+
+    // MCP3208의 8개 채널 중 하나인지 확인
+    if (adcChannel < 0 || adcChannel > 7)
+        return -1;
+
+    // SPI 통신 버퍼 설정
+    buffer[0] = 0x01;
+    buffer[1] = (CHAN_CONFIG_SINGLE + adcChannel) << 4;
+
+    // SPI 통신할 칩 활성화
+    digitalWrite(CS_MCP3208, LOW);
+
+    // ADC 센서 값 읽기
+    wiringPiSPIDataRW(SPI_CE_CHANNEL, buffer, 3);
+
+    // 읽어온 값에서 10비트 데이터 추출
+    adcValue = ((buffer[1] & 3) << 8) + buffer[2];
+
+    // SPI 통신할 칩 비활성화
+    digitalWrite(CS_MCP3208, HIGH);
+
+    return adcValue;
+}
